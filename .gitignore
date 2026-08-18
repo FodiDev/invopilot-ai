@@ -1,4 +1,4 @@
 # Environment Variables
 *.env
 *atlas-credentials.env
-node_modules
+node_modules/
