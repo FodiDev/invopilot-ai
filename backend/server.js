@@ -3,6 +3,8 @@ import cors from 'cors';
 import 'dotenv/config';
 import { connectDB } from './config/db.js';
 import { clerkMiddleware } from '@clerk/express';
+import path from 'path';
+import invoiceRouter from './routes/invoiceRouter.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -17,6 +19,9 @@ app.use(express.urlencoded({ limit: '20mb', extended: true }));
 connectDB();
 
 //Routes
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+app.use('/api/invoice', invoiceRouter);
 app.get('/', (req, res) => {
   res.send('API WORKING');
 });
